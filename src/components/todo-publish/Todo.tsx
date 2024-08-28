@@ -1,7 +1,11 @@
+import { useReducer } from 'react';
 import TodoEditor from "./TodoEditor";
 import TodoList from "./TodoList";
+import { todoReducer } from '../../reducer/TodoReducer';
+
 
 const Todo = () => {
+  const [todos, dispatch] = useReducer(todoReducer, []);
   return (
     <>
       <div className="item-middle bg-black">
@@ -9,9 +13,9 @@ const Todo = () => {
           <h1 className="text-xl font-bold mb-[10px]">Todo List App</h1>
           <p className="text-sm mb-5">Please enter your details to continue.</p>
           {/* 등록 */}
-          <TodoEditor />
+          <TodoEditor dispatch={dispatch}  />
           {/* 목록 */}
-          <TodoList />
+          <TodoList todos={todos} dispatch={dispatch} />
         </div>
       </div>
     </>
